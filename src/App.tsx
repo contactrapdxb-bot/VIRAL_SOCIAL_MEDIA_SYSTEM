@@ -20,7 +20,7 @@ interface ContentAnalysis {
   caption: string;
 }
 
-const viralPosts: ViralPost[] = [
+const viralPostsEN: ViralPost[] = [
   {
     id: '1',
     timeframe: 'Last 6 Hours',
@@ -67,6 +67,53 @@ const viralPosts: ViralPost[] = [
   }
 ];
 
+const viralPostsAR: ViralPost[] = [
+  {
+    id: '5',
+    timeframe: 'Last 6 Hours',
+    thumbnail: 'https://images.pexels.com/photos/1509428/pexels-photo-1509428.jpeg?auto=compress&cs=tinysrgb&w=600',
+    title: 'عمرو دياب يطلق أغنية جديدة تحطم الأرقام القياسية',
+    caption: 'الهضبة يعود بأغنية جديدة حققت ملايين المشاهدات في ساعات. الجمهور العربي في حالة جنون...',
+    username: '@amrdiab',
+    timeAgo: '3h ago',
+    link: 'https://instagram.com/p/C5XaBcDEfG7',
+    instagramLink: 'https://instagram.com/p/C5XaBcDEfG7'
+  },
+  {
+    id: '6',
+    timeframe: 'Last 6 Hours',
+    thumbnail: 'https://images.pexels.com/photos/1310532/pexels-photo-1310532.jpeg?auto=compress&cs=tinysrgb&w=600',
+    title: 'محمد رمضان يعلن عن مسلسل رمضاني جديد',
+    caption: 'النمبر وان يكشف عن مفاجأة رمضان القادم. العمل الجديد سيكون أضخم من كل الأعمال السابقة...',
+    username: '@mohamedramadanws',
+    timeAgo: '5h ago',
+    link: 'https://instagram.com/p/C5WxYzPqRsT',
+    instagramLink: 'https://instagram.com/p/C5WxYzPqRsT'
+  },
+  {
+    id: '7',
+    timeframe: 'Last 12 Hours',
+    thumbnail: 'https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=600',
+    title: 'نانسي عجرم تحتفل بجائزة أفضل فنانة عربية',
+    caption: 'نانسي تتوج بجائزة جديدة في حفل توزيع جوائز الموسيقى العربية. إنجاز جديد يضاف لمسيرتها الرائعة...',
+    username: '@nancyajram',
+    timeAgo: '8h ago',
+    link: 'https://instagram.com/p/C5VmNoPqXyZ',
+    instagramLink: 'https://instagram.com/p/C5VmNoPqXyZ'
+  },
+  {
+    id: '8',
+    timeframe: 'Last 24 Hours',
+    thumbnail: 'https://images.pexels.com/photos/1699161/pexels-photo-1699161.jpeg?auto=compress&cs=tinysrgb&w=600',
+    title: 'ماجد المهندس يطلق ألبوم تعاوني جديد',
+    caption: 'فنان العرب يعلن عن ألبوم جديد مع نخبة من الفنانين. التسجيلات كانت مذهلة والألبوم سيكون تاريخي...',
+    username: '@majed_almuhandis',
+    timeAgo: '16h ago',
+    link: 'https://instagram.com/p/C5UaBcQrPsM',
+    instagramLink: 'https://instagram.com/p/C5UaBcQrPsM'
+  }
+];
+
 const sampleAnalysis: ContentAnalysis = {
   thumbnail: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=600',
   titleEnglish: 'Drake Announces Surprise Album Dropping Next Month',
@@ -78,6 +125,9 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [locale, setLocale] = useState<'EN' | 'AR'>('EN');
+
+  const viralPosts = locale === 'EN' ? viralPostsEN : viralPostsAR;
 
   const handleCopy = async (text: string, id: string) => {
     try {
@@ -109,10 +159,33 @@ function App() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 lg:h-full">
           {/* Left Section - Viral Posts */}
           <div className="flex flex-col lg:h-full">
-            <div className="flex justify-center mb-3 lg:mb-4">
+            <div className="flex justify-between items-center mb-3 lg:mb-4">
+              <div className="flex-1" />
               <div className="relative px-4 py-2 lg:px-6 lg:py-2.5 rounded-full bg-gradient-to-r from-[#F6EFD6]/10 via-[#F6EFD6]/5 to-[#F6EFD6]/10 border border-[#F6EFD6]/30 backdrop-blur-xl shadow-[0_0_20px_rgba(246,239,214,0.1)]">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[#F6EFD6]/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
                 <h2 className="text-[10px] lg:text-xs uppercase tracking-[0.3em] lg:tracking-[0.4em] text-[#F6EFD6] font-bold relative z-10">Viral Posts</h2>
+              </div>
+              <div className="flex-1 flex justify-end">
+                <button
+                  onClick={() => setLocale(locale === 'EN' ? 'AR' : 'EN')}
+                  className="relative group px-3 py-1.5 lg:px-4 lg:py-2 rounded-xl bg-gradient-to-r from-white/[0.07] to-white/[0.02] border border-white/20 hover:border-[#F6EFD6]/50 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(246,239,214,0.2)] backdrop-blur-md"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] lg:text-xs font-bold transition-all duration-300 ${locale === 'EN' ? 'text-[#F6EFD6]' : 'text-white/40'}`}>
+                      EN
+                    </span>
+                    <div className="relative w-8 h-4 lg:w-9 lg:h-5 bg-white/10 rounded-full">
+                      <div
+                        className={`absolute top-0.5 w-3 h-3 lg:w-4 lg:h-4 bg-[#F6EFD6] rounded-full transition-all duration-300 shadow-lg ${
+                          locale === 'EN' ? 'left-0.5' : 'left-4 lg:left-4.5'
+                        }`}
+                      />
+                    </div>
+                    <span className={`text-[10px] lg:text-xs font-bold transition-all duration-300 ${locale === 'AR' ? 'text-[#F6EFD6]' : 'text-white/40'}`}>
+                      AR
+                    </span>
+                  </div>
+                </button>
               </div>
             </div>
 
