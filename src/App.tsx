@@ -168,22 +168,42 @@ function App() {
               <div className="flex-1 flex justify-end">
                 <button
                   onClick={() => setLocale(locale === 'EN' ? 'AR' : 'EN')}
-                  className="relative group px-3 py-1.5 lg:px-4 lg:py-2 rounded-xl bg-gradient-to-r from-white/[0.07] to-white/[0.02] border border-white/20 hover:border-[#F6EFD6]/50 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(246,239,214,0.2)] backdrop-blur-md"
+                  className="relative group"
                 >
-                  <div className="flex items-center gap-2">
-                    <span className={`text-[10px] lg:text-xs font-bold transition-all duration-300 ${locale === 'EN' ? 'text-[#F6EFD6]' : 'text-white/40'}`}>
-                      EN
-                    </span>
-                    <div className="relative w-8 h-4 lg:w-9 lg:h-5 bg-white/10 rounded-full">
-                      <div
-                        className={`absolute top-0.5 w-3 h-3 lg:w-4 lg:h-4 bg-[#F6EFD6] rounded-full transition-all duration-300 shadow-lg ${
-                          locale === 'EN' ? 'left-0.5' : 'left-4 lg:left-4.5'
-                        }`}
-                      />
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#F6EFD6]/20 via-[#F6EFD6]/10 to-[#F6EFD6]/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative flex items-center gap-1 px-2 py-2 lg:px-2.5 lg:py-2.5 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/20 group-hover:border-[#F6EFD6]/40 transition-all duration-500 backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setLocale('EN');
+                      }}
+                      className={`relative px-3 py-1.5 lg:px-4 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold tracking-wider cursor-pointer transition-all duration-500 ${
+                        locale === 'EN'
+                          ? 'text-[#0a0a0a] shadow-[0_2px_8px_rgba(246,239,214,0.3)]'
+                          : 'text-white/50 hover:text-white/70'
+                      }`}
+                    >
+                      {locale === 'EN' && (
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#F6EFD6] via-[#F6EFD6]/90 to-[#F6EFD6]/80 shadow-lg animate-in fade-in zoom-in duration-300" />
+                      )}
+                      <span className="relative z-10">EN</span>
                     </div>
-                    <span className={`text-[10px] lg:text-xs font-bold transition-all duration-300 ${locale === 'AR' ? 'text-[#F6EFD6]' : 'text-white/40'}`}>
-                      AR
-                    </span>
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setLocale('AR');
+                      }}
+                      className={`relative px-3 py-1.5 lg:px-4 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold tracking-wider cursor-pointer transition-all duration-500 ${
+                        locale === 'AR'
+                          ? 'text-[#0a0a0a] shadow-[0_2px_8px_rgba(246,239,214,0.3)]'
+                          : 'text-white/50 hover:text-white/70'
+                      }`}
+                    >
+                      {locale === 'AR' && (
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#F6EFD6] via-[#F6EFD6]/90 to-[#F6EFD6]/80 shadow-lg animate-in fade-in zoom-in duration-300" />
+                      )}
+                      <span className="relative z-10">AR</span>
+                    </div>
                   </div>
                 </button>
               </div>
